@@ -1,6 +1,6 @@
 swagger: "2.0"
 info:
-  title: FPC Compute API
+  title: FPC Compute API (old)
   version: "1.0.0"
   description: FPC Compute API for batch style workloads in Autodesk
   termsOfService: http://download.autodesk.com/us/FY14/Suites/LSA/en-US/
