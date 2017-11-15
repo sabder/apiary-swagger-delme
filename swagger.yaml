@@ -90,7 +90,7 @@ paths:
           description: Job input
           required: true
           schema:
-            $ref: '#/definitions/NewJob1'
+            $ref: '#/definitions/NewJob'
       responses:
         200:
           description: job response
@@ -165,7 +165,7 @@ definitions:
         type: string
         format: base64
         example: 9AKaULgnR3eqfEKA4Wi8KDIyeTZZOXZWalkxcjZMNHRQM1FENHVaVVcrOVp5akVGWTBoWVR0dTBHRmJCZz0
-  NewJob1:
+  NewJob:
     allOf:
       - $ref : '#/definitions/Service'
       - $ref: '#/definitions/Tags'
@@ -176,39 +176,12 @@ definitions:
         type: object
       tags:
         type: string
-  Job2:
-    allOf:
-      - $ref: '#/definitions/NewJob1'
-      - $ref: '#/definitions/JobID'
-    required:
-      - status
-    properties:
-      status:
-        type: string
-        enum: [created, scheduled, in-progress, completed, canceled, failed]
-  
-  Job1:
-    allOf:
-      - $ref: '#/definitions/NewJob1'
-      - $ref: '#/definitions/JobID'
-      - required:
-        - status
-        properties:
-          id:
-            type: integer
-            format: int64
-          status:
-            type: string
-            enum: [created, scheduled, in-progress, completed, canceled, failed]
   Job:
     allOf:
-      - $ref: '#/definitions/NewJob1' 
+      - $ref: '#/definitions/NewJob' 
       - $ref: '#/definitions/Tags'
-      - required:
-        - service
-        - schema
-        - id
-        - status
+      - $ref: '#/definitions/JobID'
+      - type : object
         properties:
           status:
             type: string
@@ -216,6 +189,27 @@ definitions:
           progress:
             type: string
             format: int32
+
+  Job1:
+    allOf:
+      - $ref: '#/definitions/NewJob'
+      - $ref: '#/definitions/JobID'
+      - required:
+        - status
+        properties:
+          status:
+            type: string
+            enum: [created, scheduled, in-progress, completed, canceled, failed]
+          id:
+            type: integer
+          
+  
+  Job3:
+    properties:
+      id:
+        type: string
+        format: base64
+  
   Error:
     required:
       - code
