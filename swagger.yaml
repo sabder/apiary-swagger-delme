@@ -176,12 +176,12 @@ definitions:
         type: object
       tags:
         type: string
-  Job:
+  Job1:
     allOf:
-      - $ref: '#/definitions/Service' 
-      - $ref: '#/definitions/Tags'
-      - $ref: '#/definitions/JobID'
-      - type : object
+      - $ref: '#/definitions/Service'
+      - required:
+        - status
+        - id
         properties:
           status:
             type: string
@@ -189,19 +189,10 @@ definitions:
           progress:
             type: string
             format: int32
-
-  Job1:
-    allOf:
-      - $ref: '#/definitions/Service'
-      - $ref: '#/definitions/JobID'
-      - required:
-        - status
-        properties:
-          status:
-            type: string
-            enum: [created, scheduled, in-progress, completed, canceled, failed]
           id:
-            type: integer
+            type: string
+            format: base64
+            example: 9AKaULgnR3eqfEKA4Wi8KDIyeTZZOXZWalkxcjZMNHRQM1FENHVaVVcrOVp5akVGWTBoWVR0dTBHRmJCZz0
   
   Error:
     required:
