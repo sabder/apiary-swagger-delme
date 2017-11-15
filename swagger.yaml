@@ -178,7 +178,7 @@ definitions:
         type: string
   Job:
     allOf:
-      - $ref: '#/definitions/NewJob' 
+      - $ref: '#/definitions/Service' 
       - $ref: '#/definitions/Tags'
       - $ref: '#/definitions/JobID'
       - type : object
@@ -192,7 +192,7 @@ definitions:
 
   Job1:
     allOf:
-      - $ref: '#/definitions/NewJob'
+      - $ref: '#/definitions/Service'
       - $ref: '#/definitions/JobID'
       - required:
         - status
@@ -202,13 +202,6 @@ definitions:
             enum: [created, scheduled, in-progress, completed, canceled, failed]
           id:
             type: integer
-          
-  
-  Job3:
-    properties:
-      id:
-        type: string
-        format: base64
   
   Error:
     required:
